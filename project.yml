@@ -2,7 +2,7 @@ name: Lumia
 options:
   bundleIdPrefix: com.lumia
   deploymentTarget:
-    macOS: "13.0"
+    macOS: "14.0"
   xcodeVersion: "15.0"
 
 settings:
