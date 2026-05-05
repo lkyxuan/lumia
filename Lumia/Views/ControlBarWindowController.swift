@@ -45,6 +45,28 @@ final class ControlBarWindowController: NSWindowController {
 
         panel.contentView = NSHostingView(rootView: view)
         panel.setFrameOrigin(topCenterOrigin())
+
+        NSEvent.addGlobalMonitorForEvents(matching: .keyDown) { [weak self] event in
+            guard let self else { return }
+            let flags = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+            guard flags == [.command, .shift] else { return }
+
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                switch event.keyCode {
+                case 15: // R key
+                    if self.state.status == .idle {
+                        await self.startRecording()
+                    } else {
+                        await self.stopRecording()
+                    }
+                case 35: // P key
+                    self.togglePause()
+                default:
+                    break
+                }
+            }
+        }
     }
 
     required init?(coder: NSCoder) { fatalError() }
