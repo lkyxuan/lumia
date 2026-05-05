@@ -3,6 +3,7 @@ import CoreVideo
 
 final class CameraCapture: NSObject {
     private let session = AVCaptureSession()
+    var captureSession: AVCaptureSession { session }
     private let output = AVCaptureVideoDataOutput()
     private let queue = DispatchQueue(label: "com.lumia.camera", qos: .userInteractive)
     private var _latestPixelBuffer: CVPixelBuffer?

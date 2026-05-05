@@ -6,13 +6,14 @@ import CoreVideo
 final class RecordingController {
     private let state: RecordingState
     private let screenCapture = ScreenCapture()
-    private let cameraCapture = CameraCapture()
+    private let cameraCapture: CameraCapture
     private var movieWriter: MovieWriter?
     private var screenSize: CGSize = .zero
     private var timer: Timer?
 
-    init(state: RecordingState) {
+    init(state: RecordingState, cameraCapture: CameraCapture) {
         self.state = state
+        self.cameraCapture = cameraCapture
     }
 
     func startRecording() async throws {

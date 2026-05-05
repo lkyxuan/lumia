@@ -2,7 +2,10 @@ import AppKit
 import SwiftUI
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
+    private var controlBarWindowController: ControlBarWindowController?
+
     func applicationDidFinishLaunching(_ notification: Notification) {
-        // ControlBarWindowController will be implemented in Task 9
+        controlBarWindowController = ControlBarWindowController()
+        controlBarWindowController?.showWindow(nil)
     }
 }
