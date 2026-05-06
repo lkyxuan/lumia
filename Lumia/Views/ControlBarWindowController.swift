@@ -26,9 +26,12 @@ final class ControlBarWindowController: NSWindowController {
 
         webcamWindow = WebcamPreviewWindowController(
             state: state,
-            session: cameraCapture.captureSession
+            cameraCapture: cameraCapture
         )
         webcamWindow?.showWindow(nil)
+
+        // Start camera immediately so preview is live from launch
+        Task { [weak self] in try? self?.cameraCapture.start() }
 
         let view = ControlBarView(
             onStart: { [weak self] in
@@ -73,7 +76,26 @@ final class ControlBarWindowController: NSWindowController {
 
     private func startRecording() async {
         do { try await controller?.startRecording() }
-        catch { print("录制启动失败: \(error)") }
+        catch {
+            let alert = NSAlert()
+            if (error as NSError).code == -3801 {
+                alert.messageText = "需要屏幕录制权限"
+                alert.informativeText = "请前往「系统设置 → 隐私与安全性 → 录屏与系统录音」，开启 Lumia 的权限，然后完全退出并重新打开 Lumia。"
+                alert.addButton(withTitle: "退出 Lumia")
+                alert.addButton(withTitle: "打开系统设置")
+                alert.addButton(withTitle: "取消")
+                let response = alert.runModal()
+                if response == .alertFirstButtonReturn {
+                    NSApp.terminate(nil)
+                } else if response == .alertSecondButtonReturn {
+                    NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_ScreenCapture")!)
+                }
+            } else {
+                alert.messageText = "录制启动失败"
+                alert.informativeText = error.localizedDescription
+                alert.runModal()
+            }
+        }
     }
 
     private func togglePause() {

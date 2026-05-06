@@ -1,5 +1,7 @@
 import AVFoundation
 import AppKit
+import ScreenCaptureKit
+import CoreGraphics
 
 enum PermissionsChecker {
     static func requestCameraPermission() async -> Bool {
@@ -21,5 +23,11 @@ enum PermissionsChecker {
         if let url = URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Camera") {
             NSWorkspace.shared.open(url)
         }
+    }
+
+    // Calling SCShareableContent triggers the macOS screen recording permission dialog
+    // if not yet granted. We ignore the result — actual failure is handled at record time.
+    static func requestScreenRecordingPermission() async {
+        CGRequestScreenCaptureAccess()
     }
 }

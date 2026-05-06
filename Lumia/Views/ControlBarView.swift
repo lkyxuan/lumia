@@ -46,6 +46,9 @@ struct ControlBarView: View {
         .padding(.horizontal, 16)
         .padding(.vertical, 8)
         .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 12))
+        .contextMenu {
+            Button("退出 Lumia") { NSApp.terminate(nil) }
+        }
     }
 
     private var formattedTime: String {

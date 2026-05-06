@@ -1,8 +1,9 @@
 import CoreVideo
 import CoreGraphics
-import VideoToolbox
+import CoreImage
 
 enum FrameCompositor {
+    private static let ciContext = CIContext(options: [.useSoftwareRenderer: false])
     static func composite(
         screen: CVPixelBuffer,
         webcam: CVPixelBuffer?,
@@ -33,21 +34,21 @@ enum FrameCompositor {
             bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue
         ) else { return nil }
 
-        // CGContext origin is bottom-left; flip to top-left
-        ctx.translateBy(x: 0, y: CGFloat(height))
-        ctx.scaleBy(x: 1, y: -1)
-
+        // CGContext origin is bottom-left, CVPixelBuffer is top-down.
+        // Drawing CGImage (top-left) into unflipped CGContext produces correct orientation in the buffer.
         if let screenImage = cgImage(from: screen) {
             ctx.draw(screenImage, in: CGRect(x: 0, y: 0, width: width, height: height))
         }
 
         if let webcam, let webcamImage = cgImage(from: webcam) {
-            // overlayRect uses top-left origin; flip Y for CGContext
+            // Convert overlayRect (top-left origin) to CGContext bottom-left origin
             let flippedY = CGFloat(height) - overlayRect.maxY
             let dest = CGRect(x: overlayRect.minX, y: flippedY,
                               width: overlayRect.width, height: overlayRect.height)
             ctx.saveGState()
-            let clipPath = CGPath(roundedRect: dest, cornerWidth: 12, cornerHeight: 12, transform: nil)
+            // Circular clip
+            let radius = min(dest.width, dest.height) / 2
+            let clipPath = CGPath(roundedRect: dest, cornerWidth: radius, cornerHeight: radius, transform: nil)
             ctx.addPath(clipPath)
             ctx.clip()
             ctx.draw(webcamImage, in: dest)
@@ -58,8 +59,7 @@ enum FrameCompositor {
     }
 
     private static func cgImage(from buffer: CVPixelBuffer) -> CGImage? {
-        var image: CGImage?
-        VTCreateCGImageFromCVPixelBuffer(buffer, options: nil, imageOut: &image)
-        return image
+        let ciImage = CIImage(cvPixelBuffer: buffer)
+        return ciContext.createCGImage(ciImage, from: ciImage.extent)
     }
 }

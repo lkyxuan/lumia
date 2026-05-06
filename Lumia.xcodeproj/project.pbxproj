@@ -11,13 +11,20 @@
 		1114626F02E975BC8D0D0303 /* MovieWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBD79A56ADF9811AB1E764A /* MovieWriter.swift */; };
 		1C002B4707B866D62BBFF7CC /* MovieWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8790E4551080A738D9B2F64A /* MovieWriterTests.swift */; };
 		33803460D1143D1C422403AF /* RecordingStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36734981EBE808709590D290 /* RecordingStateTests.swift */; };
+		50BF97F80A4E4CB372415F26 /* ScreenCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14455FC1E15E8E690835FF9F /* ScreenCapture.swift */; };
 		66EC0BDB7F971D20F94113E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44F403ACF49EB4B24D275634 /* AppDelegate.swift */; };
 		6B5423AE41EB60181207921E /* LumiaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4739959AB9A77E1AC538CBF8 /* LumiaApp.swift */; };
 		719A180798B97E187A2E137F /* FrameCompositor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03C085E0435F350EB0C3B18C /* FrameCompositor.swift */; };
+		8B829F2634BB05F6D8654E09 /* ControlBarWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C46B73173E7D5089469C380 /* ControlBarWindowController.swift */; };
+		8FD1A36A5D20E43B995EC978 /* PermissionsChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB59C3B514D8BD76BDB1886E /* PermissionsChecker.swift */; };
 		94A73C17F23D3A48EA3DD5D7 /* FrameCompositorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9BEC49145FB2E2D9765C9B /* FrameCompositorTests.swift */; };
 		AF23DFB9DE625555022EC5D8 /* LumiaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1D034D82E7A434B1DEDCB /* LumiaTests.swift */; };
 		B45BEAF777E33EFC82D5C8F5 /* CameraCaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8127C5A9A4303C6640822 /* CameraCaptureTests.swift */; };
+		B56182DE727724380820A04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4629AFE01562C8ED74BC4936 /* Assets.xcassets */; };
+		C4B043F27C3FCB90AB198F9F /* WebcamPreviewWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54386D77455B7CEC67824107 /* WebcamPreviewWindowController.swift */; };
+		C61A9D211C7B4AC73EECB6C3 /* ControlBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20D5D73192D085809F2EC97D /* ControlBarView.swift */; };
 		D27E07D9FB0EB6E0DD318562 /* RecordingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2BFDF1008EFEDC8DD70779 /* RecordingState.swift */; };
+		F1BBAD5F6F8C884E35FF7DC8 /* RecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6119FFC6C45C39ED4DB07421 /* RecordingController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,17 +39,24 @@
 
 /* Begin PBXFileReference section */
 		03C085E0435F350EB0C3B18C /* FrameCompositor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCompositor.swift; sourceTree = "<group>"; };
+		0C46B73173E7D5089469C380 /* ControlBarWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarWindowController.swift; sourceTree = "<group>"; };
 		0EBD79A56ADF9811AB1E764A /* MovieWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWriter.swift; sourceTree = "<group>"; };
+		14455FC1E15E8E690835FF9F /* ScreenCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenCapture.swift; sourceTree = "<group>"; };
+		20D5D73192D085809F2EC97D /* ControlBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlBarView.swift; sourceTree = "<group>"; };
 		36734981EBE808709590D290 /* RecordingStateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStateTests.swift; sourceTree = "<group>"; };
 		3D2BFDF1008EFEDC8DD70779 /* RecordingState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingState.swift; sourceTree = "<group>"; };
 		42CD4B7697B0A3B5171DE4E7 /* Lumia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44F403ACF49EB4B24D275634 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4629AFE01562C8ED74BC4936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4739959AB9A77E1AC538CBF8 /* LumiaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumiaApp.swift; sourceTree = "<group>"; };
 		52848715AFDCD313A4D0BAD8 /* CameraCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCapture.swift; sourceTree = "<group>"; };
+		54386D77455B7CEC67824107 /* WebcamPreviewWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebcamPreviewWindowController.swift; sourceTree = "<group>"; };
 		5DF8127C5A9A4303C6640822 /* CameraCaptureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraCaptureTests.swift; sourceTree = "<group>"; };
+		6119FFC6C45C39ED4DB07421 /* RecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingController.swift; sourceTree = "<group>"; };
 		8316F9DB451EB6D3ED7AD376 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8790E4551080A738D9B2F64A /* MovieWriterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWriterTests.swift; sourceTree = "<group>"; };
 		88E1D034D82E7A434B1DEDCB /* LumiaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LumiaTests.swift; sourceTree = "<group>"; };
+		AB59C3B514D8BD76BDB1886E /* PermissionsChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsChecker.swift; sourceTree = "<group>"; };
 		BA9BEC49145FB2E2D9765C9B /* FrameCompositorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCompositorTests.swift; sourceTree = "<group>"; };
 		E54066EB7CF4D2D37A77B667 /* LumiaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LumiaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,8 +75,19 @@
 			children = (
 				44F403ACF49EB4B24D275634 /* AppDelegate.swift */,
 				4739959AB9A77E1AC538CBF8 /* LumiaApp.swift */,
+				AB59C3B514D8BD76BDB1886E /* PermissionsChecker.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		48F51FA24F0F2FF8E4151C96 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				20D5D73192D085809F2EC97D /* ControlBarView.swift */,
+				0C46B73173E7D5089469C380 /* ControlBarWindowController.swift */,
+				54386D77455B7CEC67824107 /* WebcamPreviewWindowController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		537D0250DB9869214988DCC8 /* Recording */ = {
@@ -71,6 +96,8 @@
 				52848715AFDCD313A4D0BAD8 /* CameraCapture.swift */,
 				03C085E0435F350EB0C3B18C /* FrameCompositor.swift */,
 				0EBD79A56ADF9811AB1E764A /* MovieWriter.swift */,
+				6119FFC6C45C39ED4DB07421 /* RecordingController.swift */,
+				14455FC1E15E8E690835FF9F /* ScreenCapture.swift */,
 			);
 			path = Recording;
 			sourceTree = "<group>";
@@ -87,10 +114,12 @@
 		E6DEDB2D2F45BC7EC468BA92 /* Lumia */ = {
 			isa = PBXGroup;
 			children = (
+				4629AFE01562C8ED74BC4936 /* Assets.xcassets */,
 				8316F9DB451EB6D3ED7AD376 /* Info.plist */,
 				45DDD38A9E144AB4D850AEA3 /* App */,
 				03FE374FC3EE682CC57952AA /* Models */,
 				537D0250DB9869214988DCC8 /* Recording */,
+				48F51FA24F0F2FF8E4151C96 /* Views */,
 			);
 			path = Lumia;
 			sourceTree = "<group>";
@@ -124,6 +153,7 @@
 			buildConfigurationList = CD88E63AFD83B92FC57FD41B /* Build configuration list for PBXNativeTarget "Lumia" */;
 			buildPhases = (
 				4B44C0EE510080FF835D0D11 /* Sources */,
+				B64B12731AD179C86969F9B1 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -165,11 +195,11 @@
 				TargetAttributes = {
 					4EA0932D9BB9793B9D7E04AA = {
 						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 					B35E8379AFC17D61435B60DB = {
 						DevelopmentTeam = "";
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -193,6 +223,17 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		B64B12731AD179C86969F9B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B56182DE727724380820A04F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		35BA14CBBF77012F573C38E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -212,10 +253,16 @@
 			files = (
 				66EC0BDB7F971D20F94113E5 /* AppDelegate.swift in Sources */,
 				10511A3B2127A1939FE21350 /* CameraCapture.swift in Sources */,
+				C61A9D211C7B4AC73EECB6C3 /* ControlBarView.swift in Sources */,
+				8B829F2634BB05F6D8654E09 /* ControlBarWindowController.swift in Sources */,
 				719A180798B97E187A2E137F /* FrameCompositor.swift in Sources */,
 				6B5423AE41EB60181207921E /* LumiaApp.swift in Sources */,
 				1114626F02E975BC8D0D0303 /* MovieWriter.swift in Sources */,
+				8FD1A36A5D20E43B995EC978 /* PermissionsChecker.swift in Sources */,
+				F1BBAD5F6F8C884E35FF7DC8 /* RecordingController.swift in Sources */,
 				D27E07D9FB0EB6E0DD318562 /* RecordingState.swift in Sources */,
+				50BF97F80A4E4CB372415F26 /* ScreenCapture.swift in Sources */,
+				C4B043F27C3FCB90AB198F9F /* WebcamPreviewWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,7 +327,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Lumia Dev";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
@@ -361,7 +409,8 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Lumia Dev";
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";

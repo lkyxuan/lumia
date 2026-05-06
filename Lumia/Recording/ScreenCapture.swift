@@ -21,7 +21,9 @@ final class ScreenCapture: NSObject {
         let content = try await SCShareableContent.excludingDesktopWindows(false, onScreenWindowsOnly: true)
         guard let display = content.displays.first else { throw CaptureError.noScreen }
 
-        let filter = SCContentFilter(display: display, excludingApplications: [], exceptingWindows: [])
+        // Exclude Lumia's own windows (control bar + webcam overlay) from the recording
+        let excluded = content.applications.filter { $0.bundleIdentifier == "com.lumia.app" }
+        let filter = SCContentFilter(display: display, excludingApplications: excluded, exceptingWindows: [])
         let config = SCStreamConfiguration()
         config.width = display.width
         config.height = display.height

@@ -1,6 +1,7 @@
 import Foundation
 import CoreGraphics
 import CoreVideo
+import AppKit
 
 @MainActor
 final class RecordingController {
@@ -20,6 +21,9 @@ final class RecordingController {
         let url = desktopURL()
         movieWriter = try MovieWriter(outputURL: url)
 
+        cameraCapture.onAudioBuffer = { [weak self] buffer in
+            self?.movieWriter?.appendAudioBuffer(buffer)
+        }
         try cameraCapture.start()
 
         screenCapture.onFrame = { [weak self] pixelBuffer, size in
@@ -45,6 +49,7 @@ final class RecordingController {
         timer?.invalidate()
         timer = nil
         try await screenCapture.stop()
+        cameraCapture.onAudioBuffer = nil
         cameraCapture.stop()
 
         await withCheckedContinuation { continuation in
@@ -72,15 +77,17 @@ final class RecordingController {
     }
 
     private func resolvedOverlayRect(screenSize: CGSize) -> CGRect {
-        let w: CGFloat = 280, h: CGFloat = 158, margin: CGFloat = 24
+        let scale = NSScreen.main?.backingScaleFactor ?? 2.0
+        let size: CGFloat = 200 * scale   // match the 200pt webcam window in pixels
+        let margin: CGFloat = 24 * scale
         switch state.overlayPosition {
         case .bottomRight:
-            return CGRect(x: screenSize.width - w - margin,
-                          y: screenSize.height - h - margin, width: w, height: h)
+            return CGRect(x: screenSize.width - size - margin,
+                          y: screenSize.height - size - margin, width: size, height: size)
         case .bottomLeft:
-            return CGRect(x: margin, y: screenSize.height - h - margin, width: w, height: h)
+            return CGRect(x: margin, y: screenSize.height - size - margin, width: size, height: size)
         case .custom(let point):
-            return CGRect(origin: point, size: CGSize(width: w, height: h))
+            return CGRect(origin: point, size: CGSize(width: size, height: size))
         }
     }
 
@@ -96,8 +103,10 @@ final class RecordingController {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd_HH-mm-ss"
         let name = "Lumia_\(formatter.string(from: Date())).mp4"
-        return FileManager.default.homeDirectoryForCurrentUser
+        let folder = FileManager.default.homeDirectoryForCurrentUser
             .appendingPathComponent("Desktop")
-            .appendingPathComponent(name)
+            .appendingPathComponent("Lumia")
+        try? FileManager.default.createDirectory(at: folder, withIntermediateDirectories: true)
+        return folder.appendingPathComponent(name)
     }
 }
