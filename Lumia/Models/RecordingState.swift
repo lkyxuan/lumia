@@ -10,13 +10,16 @@ enum RecordingStatus: Equatable {
 enum OverlayPosition: Equatable {
     case bottomRight
     case bottomLeft
-    case custom(CGPoint)
+    case topRight
+    case topLeft
 }
 
 @Observable
 final class RecordingState {
     private(set) var status: RecordingStatus = .idle
     var overlayPosition: OverlayPosition = .bottomRight
+    var overlayFraction: CGFloat = 0.20   // circle diameter as fraction of shorter screen edge
+    var webcamZoom: CGFloat = 1.0         // 1.0 = normal, 2.0 = 2× zoom into center
     private(set) var elapsedSeconds: Int = 0
 
     var isRecording: Bool { status == .recording }

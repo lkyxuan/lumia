@@ -64,30 +64,21 @@ final class RecordingController {
 
     private func handleScreenFrame(_ screen: CVPixelBuffer, size: CGSize) {
         if screenSize == .zero {
-            screenSize = size
-            movieWriter?.startWriting(width: Int(size.width), height: Int(size.height))
+            let w = CVPixelBufferGetWidth(screen)
+            let h = CVPixelBufferGetHeight(screen)
+            screenSize = CGSize(width: w, height: h)
+            movieWriter?.startWriting(width: w, height: h)
         }
         guard state.isRecording else { return }
 
-        let overlayRect = resolvedOverlayRect(screenSize: size)
         let webcam = cameraCapture.currentFrame()
-        if let composited = FrameCompositor.composite(screen: screen, webcam: webcam, overlayRect: overlayRect) {
+        if let composited = FrameCompositor.composite(
+            screen: screen, webcam: webcam,
+            overlayFraction: state.overlayFraction,
+            webcamZoom: state.webcamZoom,
+            overlayPosition: state.overlayPosition
+        ) {
             movieWriter?.appendFrame(composited)
-        }
-    }
-
-    private func resolvedOverlayRect(screenSize: CGSize) -> CGRect {
-        let scale = NSScreen.main?.backingScaleFactor ?? 2.0
-        let size: CGFloat = 200 * scale   // match the 200pt webcam window in pixels
-        let margin: CGFloat = 24 * scale
-        switch state.overlayPosition {
-        case .bottomRight:
-            return CGRect(x: screenSize.width - size - margin,
-                          y: screenSize.height - size - margin, width: size, height: size)
-        case .bottomLeft:
-            return CGRect(x: margin, y: screenSize.height - size - margin, width: size, height: size)
-        case .custom(let point):
-            return CGRect(origin: point, size: CGSize(width: size, height: size))
         }
     }
 

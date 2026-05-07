@@ -29,6 +29,7 @@ final class ScreenCapture: NSObject {
         config.height = display.height
         config.minimumFrameInterval = CMTime(value: 1, timescale: 30)
         config.queueDepth = 3
+        config.pixelFormat = kCVPixelFormatType_32BGRA
 
         let stream = SCStream(filter: filter, configuration: config, delegate: nil)
         try stream.addStreamOutput(self, type: .screen, sampleHandlerQueue: queue)
