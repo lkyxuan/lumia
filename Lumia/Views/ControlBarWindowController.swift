@@ -10,7 +10,7 @@ final class ControlBarWindowController: NSWindowController {
 
     init() {
         let panel = NSPanel(
-            contentRect: NSRect(x: 0, y: 0, width: 240, height: 44),
+            contentRect: NSRect(x: 0, y: 0, width: 272, height: 44),
             styleMask: [.titled, .nonactivatingPanel, .hudWindow],
             backing: .buffered,
             defer: false
@@ -32,6 +32,10 @@ final class ControlBarWindowController: NSWindowController {
 
         // Start camera immediately so preview is live from launch
         Task { [weak self] in try? self?.cameraCapture.start() }
+
+        cameraCapture.onAudioLevel = { [weak self] level in
+            self?.state.audioLevel = level
+        }
 
         let view = ControlBarView(
             onStart: { [weak self] in

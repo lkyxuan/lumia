@@ -18,6 +18,8 @@ struct ControlBarView: View {
                 .foregroundStyle(.primary)
                 .frame(minWidth: 48)
 
+            AudioLevelView(level: state.audioLevel)
+
             Divider().frame(height: 16)
 
             if state.status == .idle {
@@ -55,5 +57,24 @@ struct ControlBarView: View {
         let m = state.elapsedSeconds / 60
         let s = state.elapsedSeconds % 60
         return String(format: "%02d:%02d", m, s)
+    }
+}
+
+private struct AudioLevelView: View {
+    let level: Float
+
+    var body: some View {
+        HStack(spacing: 2) {
+            bar(height: 7,  active: level > 0.01, color: .green)
+            bar(height: 11, active: level > 0.06, color: .green)
+            bar(height: 15, active: level > 0.18, color: .yellow)
+        }
+        .frame(height: 15, alignment: .bottom)
+    }
+
+    private func bar(height: CGFloat, active: Bool, color: Color) -> some View {
+        RoundedRectangle(cornerRadius: 1.5)
+            .fill(active ? color : Color.gray.opacity(0.25))
+            .frame(width: 3, height: height)
     }
 }

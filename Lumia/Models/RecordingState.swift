@@ -20,6 +20,7 @@ final class RecordingState {
     var overlayPosition: OverlayPosition = .bottomRight
     var overlayFraction: CGFloat = 0.20   // circle diameter as fraction of shorter screen edge
     var webcamZoom: CGFloat = 1.0         // 1.0 = normal, 2.0 = 2× zoom into center
+    var audioLevel: Float = 0
     private(set) var elapsedSeconds: Int = 0
 
     var isRecording: Bool { status == .recording }

@@ -66,6 +66,21 @@ final class WebcamPreviewWindowController: NSWindowController {
             menu.addItem(item)
         }
 
+        // Microphone selection
+        menu.addItem(.separator())
+        let micHeader = NSMenuItem(title: "选择麦克风", action: nil, keyEquivalent: "")
+        micHeader.isEnabled = false
+        menu.addItem(micHeader)
+        menu.addItem(.separator())
+        for device in CameraCapture.availableMicrophones() {
+            let item = NSMenuItem(title: device.localizedName,
+                                  action: #selector(selectMicrophone(_:)),
+                                  keyEquivalent: "")
+            item.target = self
+            item.representedObject = device
+            menu.addItem(item)
+        }
+
         // Position
         menu.addItem(.separator())
         let posHeader = NSMenuItem(title: "位置", action: nil, keyEquivalent: "")
@@ -114,6 +129,11 @@ final class WebcamPreviewWindowController: NSWindowController {
     @objc private func selectCamera(_ item: NSMenuItem) {
         guard let device = item.representedObject as? AVCaptureDevice else { return }
         cameraCapture.switchCamera(to: device)
+    }
+
+    @objc private func selectMicrophone(_ item: NSMenuItem) {
+        guard let device = item.representedObject as? AVCaptureDevice else { return }
+        cameraCapture.switchMicrophone(to: device)
     }
 
     @objc private func setPosition(_ item: NSMenuItem) {
